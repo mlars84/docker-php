@@ -2,6 +2,7 @@
 - [Docker For PHP Developers](#docker-for-php-developers)
     - [Chapter 1: Up and Running](#chapter-1-up-and-running)
     - [Chapter 2: PHP Container Basics](#chapter-2-php-container-basics)
+    - [Chapter 3: LAMP](#chapter-3-lamp)
 
 ## Chapter 1: Up and Running
 - `docker ps` - list running docker containers
@@ -24,5 +25,9 @@
 - DOCKER COMPOSE YML
     - Compose is a tool for defining and running multi-container Docker applications
     - PORT: <host_- port>:<container_port>
-    - 
+    - `docker-compose up -d`: Run it in the background
+    - `docker exec -it <IMG_ID> bash` if you want to run bash in the container
+
+## Chapter 3: LAMP
+- 
 
