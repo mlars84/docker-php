@@ -4,6 +4,16 @@ LABEL maintainer="Matt Larson"
 COPY .docker/php/php.ini /usr/local/etc/php/
 COPY . /srv/app
 COPY .docker/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
-RUN docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install opcache \
+RUN docker-php-ext-install pdo_mysql opcache \
+    && pecl install xdebug-2.5.1 \
+    && docker-php-ext-enable xdebug \
     && a2enmod rewrite negotiation
+
+COPY .docker/php/xdebug-dev.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN cp -R /usr/local/etc/php/conf.d \
+    /usr/local/etc/php/conf.d-dev \
+    && rm -f /usr/local/etc/php/conf.d/*-dev.ini \
+    && rm -f /usr/local/etc/php/conf.d/*xdebug.ini
+
+RUN chown -R www-data:www-data /srv/app

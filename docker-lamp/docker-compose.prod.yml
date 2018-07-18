@@ -6,11 +6,15 @@ services:
         - mariadb
       ports:
         - "8081:80"
-      volumes:
-        - .:/srv/app
       links:
         - mariadb:mariadb
-      env_file: .docker.env
+      environment:
+        DB_CONNECTION: mysql
+        DB_HOST: mariadb
+        DB_PORT: 3306
+        DB_DATABASE: dockerphp
+        DB_USERNAME: root
+        DB_PASSWORD: password
     mariadb:
       image: mariadb:10.1.21
       ports:
